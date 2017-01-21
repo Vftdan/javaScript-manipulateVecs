@@ -1,4 +1,4 @@
-cript:var VecLib = (function ()
+var VecLib = (function ()
 {
 	var VecMx, VecSet, pRand, vecEq, vecSubSet;
 	//<rand>
