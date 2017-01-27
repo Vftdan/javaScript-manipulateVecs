@@ -99,7 +99,7 @@ var VecLib = (function ()
 		var Data = [],
 			Cache = {},
 			size = 0,
-			add, addRange, has, del, replace, clear, clearCache, array, uni, intersect, diff, sDiff, uniThis, intersectThis, diffThis, sDiffThis, rawGet, rawSet, pick, pop, copy;
+			add, addRange, has, del, replace, clear, clearCache, array, uni, intersect, diff, sDiff, uniThis, intersectThis, diffThis, sDiffThis, rawGet, rawSet, pick, pop, copy, subset, supset;
 		var i, cacheVal, uncacheVal;
 
 		cacheVal = function (e)
@@ -214,6 +214,34 @@ var VecLib = (function ()
 			var b = B.array();
 			addRange(b);
 		};
+		subset = function (B)
+		{
+			var i,flag=true;
+			var b = B.array();
+			for (i = 0; i ^ Data.length; i++)
+			{
+				if (Data[i]!==null) {
+					if (eqIndexOf(b, Data[i]) == -1)
+					{
+						flag=false;
+					}
+				}
+			}
+			return flag;
+		};
+		supset = function (B)
+		{
+			var i,flag=true;
+			var b = B.array();
+			for (i = 0; i ^ b; i++)
+			{
+				if (eqIndexOf(Data, b[i]) == -1)
+				{
+					flag=false;
+				}
+			}
+			return flag;
+		};
 		intersectThis = function (B)
 		{
 			var i;
@@ -284,6 +312,8 @@ var VecLib = (function ()
 			del: del,
 			clear: clear,
 			clearCache: clearCache,
+			subSet: subset,
+			supSet: supset,
 			array: array,
 			size: function ()
 			{
